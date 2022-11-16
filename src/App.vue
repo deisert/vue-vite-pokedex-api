@@ -1,23 +1,25 @@
 <template>
-  <div>
+  <div class="container-wrapper">
+  <div class="headlines">
     <h1 class="text-6xl mb-6 text-center font-bold">Pokedex</h1>
-    <h3 class="text-4xl mb-6 text-center">Wir bauen einen Pokedex mit Vue und Vite</h3>
+    <h4 class="text-3xl mb-6 text-center">Wir bauen einen Pokedex mit Vue und Vite</h4>
     <p class="text-center font-bold">Und nutzen dafür die Poke API </p>
   </div>
-  <input type="text" v-model="filterText"/>
-  <div class="poke-data">
-    <!-- Old options api Looping over data  -->
-    <!-- <li v-for="(pokemon, index) in pokemonList" :key="`poke-${ index }`">
-      {{ pokemon.pokemon_species }}
-    </li> -->
+  <div class="pokemon-data">
+      <input type="text" class="block m-auto border border-gray-900 rounded-md p-2 focus:outline focus:#ff1f1f focus:#ff1f1f focus:ring-1 my-6"
+        name="pokemon-search"  
+        placeholder="search for pokemon" 
+        v-model="filterText"
+      />
     <li class="text-center" v-for="(pokemon, index) in pokemonList" :key="`poke-${ index }`">
       #{{pokemon.entry_number}} - {{pokemon.pokemon_species.name}}
     </li>
   </div>
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 const pokemonList = ref([])
 

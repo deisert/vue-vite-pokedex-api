@@ -1,6 +1,8 @@
 @tailwind base; 
 @tailwind components; 
 @tailwind utilities; 
+@tailwind screens; 
+
 
 /* body {
   background-color: #121212;
@@ -10,3 +12,14 @@
 /* .text-white-87 {
   color: rgba(255, 255, 255, 0.87);
 } */
+
+/*Selection Color */
+::-moz-selection {
+  background: #ff1f1f;
+  color: #E0E0E0;
+}
+
+::selection {
+  background: #ff1f1f;
+  color: #E0E0E0;
+}
