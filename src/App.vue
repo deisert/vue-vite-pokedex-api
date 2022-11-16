@@ -15,9 +15,10 @@
         placeholder="search for pokemon"
         v-model="searchInput"
       />
+      <!-- <p class="text-center">{{ pokemonStore }}</p> -->
       <li
         class="text-center"
-        v-for="(pokemon, index) in filteredPokemonList"
+        v-for="(pokemon, index) in pokemonStore.filteredList"
         :key="`poke-${index}`"
       >
         #{{ pokemon.entry_number }} - {{ pokemon.pokemon_species.name }}
@@ -27,23 +28,38 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 
 const searchInput = ref("");
-const pokemonList = ref([]);
 
-const filteredPokemonList = computed(() =>
-  pokemonList.value.filter((pokemon) =>
-    pokemon.pokemon_species.name.includes(searchInput.value)
-  )
-);
+//reactive "Store" obj
+//list = everything
+//filteredList =
+const pokemonStore = reactive({
+  list: [],
+  filteredList: computed(() =>
+    pokemonStore.list.filter((pokemon) =>
+      pokemon.pokemon_species.name.includes(searchInput.value)
+    )
+  ),
+});
 
 onMounted(async () => {
   const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/").then(
     (response) => response.json()
   );
-  pokemonList.value = pokemonData.pokemon_entries;
+  pokemonStore.list = pokemonData.pokemon_entries;
+  //pokemonList.value = pokemonData.pokemon_entries;
 });
+
+//const pokemonList = ref([]);
+
+//seperate computed
+// const filteredPokemonList = computed(() =>
+//   pokemonList.value.filter((pokemon) =>
+//     pokemon.pokemon_species.name.includes(searchInput.value)
+//   )
+// );
 
 //***
 //OLD options api
