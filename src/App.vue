@@ -10,14 +10,14 @@
     <div class="pokemon-data">
       <input
         type="text"
-        class="block m-auto border border-gray-900 rounded-md p-2 focus:outline focus:#ff1f1f focus:#ff1f1f focus:ring-1 my-6"
+        class="block m-auto border border-gray-900 rounded-md p-2 my-6"
         name="pokemon-search"
         placeholder="search for pokemon"
-        v-model="filterText"
+        v-model="searchInput"
       />
       <li
         class="text-center"
-        v-for="(pokemon, index) in pokemonList"
+        v-for="(pokemon, index) in filteredPokemonList"
         :key="`poke-${index}`"
       >
         #{{ pokemon.entry_number }} - {{ pokemon.pokemon_species.name }}
@@ -29,7 +29,14 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 
+const searchInput = ref("");
 const pokemonList = ref([]);
+
+const filteredPokemonList = computed(() =>
+  pokemonList.value.filter((pokemon) =>
+    pokemon.pokemon_species.name.includes(searchInput.value)
+  )
+);
 
 onMounted(async () => {
   const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/").then(
