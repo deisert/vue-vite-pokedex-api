@@ -45,9 +45,9 @@ const pokemonStore = reactive({
 });
 
 onMounted(async () => {
-  const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/").then(
-    (response) => response.json()
-  );
+  const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/", {
+    cache: "force-cache",
+  }).then((response) => response.json());
   pokemonStore.list = pokemonData.pokemon_entries;
   //pokemonList.value = pokemonData.pokemon_entries;
 });
