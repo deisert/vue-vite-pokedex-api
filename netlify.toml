@@ -4,8 +4,8 @@
 # Directory to change to before starting a build.
 # This is where we will look for package.json/.nvmrc/etc.
 # If not set, defaults to the root directory.
-# base = "project/"
-command = "vite build"
+base = "project/"
+# command = "vite build"
 functions = "netlify/functions"
 
 # Directory that contains the deploy-ready HTML files and
@@ -14,7 +14,7 @@ functions = "netlify/functions"
 # a base has not been set. This sample publishes the directory
 # located at the absolute path "root/project/build-output"
 
-publish = "build-output/"
+publish = "dist/"
 
 # Default build command.
 # command = "echo 'default context'"
