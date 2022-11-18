@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "netlify": "^13.0.1",
+    "node-fetch": "^3.3.0",
     "vue": "^3.2.41"
   },
   "devDependencies": {
