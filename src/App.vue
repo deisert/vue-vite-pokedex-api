@@ -48,8 +48,8 @@ onMounted(async () => {
     (response) => response.json()
   );
 
-  const helloFetch = await fetch("/.netlify/functions/hello").then((response) =>
-    response.json()
+  const helloFetch = await fetch("/.netlify/functions/fetchPokemonData").then(
+    (response) => response.json()
   );
   console.log({ helloFetch });
 
