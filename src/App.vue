@@ -20,7 +20,7 @@
         v-for="(pokemon, index) in pokemonStore.filteredList"
         :key="`poke-${index}`"
       >
-        #{{ pokemon.entry_number }} - {{ pokemon.pokemon_species.name }}
+        #{{ pokemon.pokemonId }} - {{ pokemon.pokemonName }}
       </li>
     </div>
   </div>
@@ -31,6 +31,14 @@ import { reactive, ref, computed, onMounted } from "vue";
 
 const searchInput = ref("");
 
+//first try at bringing searchInput to Uppercase, so that the search functions works as expected.
+// function stringToUpperCase(foo) {
+//   if (foo == " ") {
+//     return foo;
+//   } else return foo[0].toUpperCase() + foo.slice(1);
+// }
+// const searchInputUpper = stringToUpperCase(searchInput.value);
+
 //reactive "Store" obj
 //its reactive so the list (api response)
 //and the filteredList is together in one obj
@@ -38,22 +46,17 @@ const pokemonStore = reactive({
   list: [],
   filteredList: computed(() =>
     pokemonStore.list.filter((pokemon) =>
-      pokemon.pokemon_species.name.includes(searchInput.value)
+      pokemon.pokemonName.includes(searchInput.value)
     )
   ),
 });
 
 onMounted(async () => {
-  const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/").then(
+  const pokemonData = await fetch("/.netlify/functions/fetchPokemonData").then(
     (response) => response.json()
   );
-
-  const helloFetch = await fetch("/.netlify/functions/fetchPokemonData").then(
-    (response) => response.json()
-  );
-  console.log({ helloFetch });
-
-  pokemonStore.list = pokemonData.pokemon_entries;
+  console.log({ pokemonData });
+  pokemonStore.list = pokemonData;
 });
 </script>
 
