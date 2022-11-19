@@ -6,12 +6,26 @@ import fetch from "node-fetch";
 //const fetch = require("node-fetch");
 
 exports.handler = async function () {
-  const pokemonData = await fetch("https://pokeapi.co/api/v2/pokedex/2/").then(
-    (response) => response.json()
-  );
+  const pokemonDataApi = await fetch(
+    "https://pokeapi.co/api/v2/pokedex/2/"
+  ).then((response) => response.json());
+
+  //"mapping" the api response json to access it easier in the frontend
+  const pokemonEntries = pokemonDataApi.pokemon_entries
+    ? pokemonDataApi.pokemon_entries.map((pokemon) => {
+        const pokemonNameUppercase =
+          pokemon.pokemon_species.name[0].toUpperCase() +
+          pokemon.pokemon_species.name.substring(1);
+
+        return {
+          pokemonId: pokemon.entry_number,
+          pokemonName: pokemonNameUppercase,
+        };
+      })
+    : [];
 
   return {
     statusCode: 200,
-    body: JSON.stringify(pokemonData),
+    body: JSON.stringify(pokemonEntries),
   };
 };
