@@ -46,7 +46,9 @@ const pokemonStore = reactive({
   list: [],
   filteredList: computed(() =>
     pokemonStore.list.filter((pokemon) =>
-      pokemon.pokemonName.includes(searchInput.value)
+      pokemon.pokemonName
+        .toLowerCase()
+        .includes(searchInput.value.toLowerCase())
     )
   ),
 });
