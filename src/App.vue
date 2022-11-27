@@ -1,20 +1,23 @@
 <template id="app">
   <div class="container-wrapper">
+    <h1 class="text-6xl my-8 text-center font-bold">Pokedex</h1>
+    <NavbarVue />
+    <div class="searchbar flex justify-center py-0 border">
+      <input
+        type="text"
+        class="border border-gray-900 rounded-lg p-2 my-6"
+        name="pokemon-search"
+        placeholder="search for pokemon"
+        v-model="searchInput"
+      />
+    </div>
     <div class="headlines">
-      <h1 class="text-6xl mb-6 text-center font-bold">Pokedex</h1>
       <h4 class="text-3xl mb-6 text-center">
         Wir bauen einen Pokedex mit Vue und Vite
       </h4>
       <p class="text-center font-bold">Und nutzen dafür die Poke API</p>
     </div>
     <div class="pokemon-data">
-      <input
-        type="text"
-        class="block m-auto border border-gray-900 rounded-md p-2 my-6"
-        name="pokemon-search"
-        placeholder="search for pokemon"
-        v-model="searchInput"
-      />
       <li
         class="text-center"
         v-for="(pokemon, index) in pokemonStore.filteredList"
@@ -57,7 +60,7 @@ onMounted(async () => {
   const pokemonData = await fetch("/.netlify/functions/fetchPokemonData").then(
     (response) => response.json()
   );
-  console.log({ pokemonData });
+  //console.log({ pokemonData });
   pokemonStore.list = pokemonData;
 });
 </script>
