@@ -20,6 +20,7 @@ exports.handler = async function () {
         return {
           pokemonId: pokemon.entry_number,
           pokemonName: pokemonNameUppercase,
+          pokemonUrl: pokemon.pokemon_species.url,
         };
       })
     : [];
