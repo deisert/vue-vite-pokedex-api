@@ -42,6 +42,7 @@ const searchInput = ref("");
 // }
 // const searchInputUpper = stringToUpperCase(searchInput.value);
 
+//Object to Store the pokemon dat
 //reactive "Store" obj
 //its reactive so the list (api response)
 //and the filteredList is together in one obj
@@ -56,12 +57,23 @@ const pokemonStore = reactive({
   ),
 });
 
+//Object to store berries inside
+const berrieStore = reactive({
+  list: [],
+});
+
 onMounted(async () => {
   const pokemonData = await fetch("/.netlify/functions/fetchPokemonData").then(
     (response) => response.json()
   );
-  //console.log({ pokemonData });
   pokemonStore.list = pokemonData;
+
+  //TODO: move to extra berrieComponent. Again in onMounted.
+  const berrieData = await fetch("/.netlify/functions/fetchBerrieData").then(
+    (response) => response.json()
+  );
+  berrieStore.list = berrieData;
+  //console.log({ berrieStore });
 });
 </script>
 
