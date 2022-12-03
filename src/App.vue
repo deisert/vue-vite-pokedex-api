@@ -17,6 +17,9 @@
       </h4>
       <p class="text-center font-bold">Und nutzen dafür die Poke API</p>
     </div>
+    <div class="component-data flex flex-wrap justify-center gap-4">
+      <BerryCardVue></BerryCardVue>
+    </div>
     <div class="pokemon-data">
       <li
         class="text-center"
@@ -31,16 +34,9 @@
 
 <script setup>
 import { reactive, ref, computed, onMounted } from "vue";
+import BerryCardVue from "./components/BerryCardVue.vue";
 
 const searchInput = ref("");
-
-//first try at bringing searchInput to Uppercase, so that the search functions works as expected.
-// function stringToUpperCase(foo) {
-//   if (foo == " ") {
-//     return foo;
-//   } else return foo[0].toUpperCase() + foo.slice(1);
-// }
-// const searchInputUpper = stringToUpperCase(searchInput.value);
 
 //Object to Store the pokemon dat
 //reactive "Store" obj
@@ -57,23 +53,11 @@ const pokemonStore = reactive({
   ),
 });
 
-//Object to store berries inside
-const berrieStore = reactive({
-  list: [],
-});
-
 onMounted(async () => {
   const pokemonData = await fetch("/.netlify/functions/fetchPokemonData").then(
     (response) => response.json()
   );
   pokemonStore.list = pokemonData;
-
-  //TODO: move to extra berrieComponent. Again in onMounted.
-  const berrieData = await fetch("/.netlify/functions/fetchBerrieData").then(
-    (response) => response.json()
-  );
-  berrieStore.list = berrieData;
-  //console.log({ berrieStore });
 });
 </script>
 
