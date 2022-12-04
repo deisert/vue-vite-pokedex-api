@@ -13,6 +13,7 @@
     </div>
     <div class="pokemon-data">
       <DisplayPokemonCardsVue />
+      <BerryCardVue></BerryCardVue>
     </div>
   </div>
 </template>

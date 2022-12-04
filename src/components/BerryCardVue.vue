@@ -6,7 +6,7 @@
       <a href="#">
         <img
           class="rounded-t-lg w-full h-48"
-          src="public\Berry_Basket.png"
+          src="../assets/Berry_Basket.png"
           alt="berry basket"
         />
       </a>
