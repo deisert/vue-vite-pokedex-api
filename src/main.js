@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import Vue from "vue";
+//import Vue from "vue";
 import App from "./App.vue";
 import "./index.css";
 
@@ -7,6 +7,7 @@ import "./index.css";
 import NavbarVue from "./components/NavbarVue.vue";
 import NavbarItemVue from "./components/NavbarItemVue.vue";
 
+//new Vue();
 const app = createApp(App);
 
 app.component("NavbarVue", NavbarVue).component("NavbarItemVue", NavbarItemVue);
