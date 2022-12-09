@@ -11,27 +11,18 @@
         />
       </a>
       <div class="p-3">
-        <h5 class="berry-name mb-1 text-2xl font-semibold">Berry Name</h5>
-
+        <h5 class="berry-name mb-1 text-2xl font-semibold">{{ berrieName }}</h5>
         <p class="berry-description mb-2 font-thin">I am berry text</p>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, defineProps } from "vue";
 
-//Object to store berries inside
-const berrieStore = reactive({
-  list: [],
-});
-
-onMounted(async () => {
-  const berrieData = await fetch("/.netlify/functions/fetchBerrieData").then(
-    (response) => response.json()
-  );
-  berrieStore.list = berrieData;
-  //console.log({ berrieStore });
+const props = defineProps({
+  berrieName: String,
+  berrieUrl: String,
 });
 </script>
 
