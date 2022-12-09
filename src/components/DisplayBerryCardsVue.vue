@@ -15,7 +15,9 @@
       <BerryCardVue
         v-for="(berry, index) in berryStore.filteredList"
         :key="`berry-${index}`"
-        :berrieName="berryStore.filteredList[index].berrieName"
+        :berryId="index + 1"
+        :berryName="berryStore.filteredList[index].berryName"
+        :berryUrl="berryStore.filteredList[index].berryUrl"
       />
     </div>
   </div>
@@ -31,7 +33,7 @@ const berryStore = reactive({
   list: [],
   filteredList: computed(() =>
     berryStore.list.filter((berry) =>
-      berry.berrieName.toLowerCase().includes(searchInput.value.toLowerCase())
+      berry.berryName.toLowerCase().includes(searchInput.value.toLowerCase())
     )
   ),
 });
@@ -41,6 +43,7 @@ onMounted(async () => {
     (response) => response.json()
   );
   berryStore.list = berrieData;
+  //console.log(berryStore.list);
 });
 </script>
 
