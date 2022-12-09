@@ -1,13 +1,11 @@
 <template>
   <div class="berry-card">
-    <div
-      class="max-w-sm border bg-slate-50 border-red-300 rounded-lg shadow-md"
-    >
-      <a href="#">
+    <div class="border bg-slate-50 border-red-300 rounded-lg shadow-md">
+      <a :href="berryItem.url" class="">
         <img
-          class="rounded-t-lg w-full h-48"
+          class="rounded-t-lg w-40 m-auto"
           :src="berryItem.imageUrl"
-          alt="berry basket"
+          alt=""
         />
       </a>
       <div class="p-3">
@@ -25,14 +23,13 @@ import { reactive, ref, defineProps, onMounted } from "vue";
 const props = defineProps({
   berryId: Number,
   berryName: String,
-  //berryDescription: String,
   berryUrl: String,
 });
 
 //Item Data, that gets fetched via berrieItemDataApi
 let berryItem = reactive({
-  url: "",
-  description: "",
+  url: "", //url for the item to fetch further information
+  description: "", //effect of the berry
   imageUrl: "",
 });
 
@@ -56,8 +53,4 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
-.berrie-card {
-  border: 1px solid orangered;
-}
-</style>
+<style scoped></style>

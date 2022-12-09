@@ -10,7 +10,7 @@
   </div>
   <div class="container mx-auto max-w-6xl">
     <div
-      class="card-container flex flex-wrap gap-4 gap-y-4 justify-center items-center border border-red-600"
+      class="card-container grid grid-cols-3 grid-flow-row gap-4 gap-y-4 justify-center place-content-stretch items-center"
     >
       <BerryCardVue
         v-for="(berry, index) in berryStore.filteredList"
