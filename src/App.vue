@@ -12,16 +12,17 @@
       <!-- <BerryCardVue></BerryCardVue> -->
     </div>
     <div class="pokemon-data">
-      <DisplayPokemonCardsVue />
-      <BerryCardVue></BerryCardVue>
+      <!-- <DisplayPokemonCardsVue /> -->
+
+      <DisplayBerryCardsVue />
     </div>
   </div>
 </template>
 
 <script setup>
 import { reactive, ref, computed, onMounted } from "vue";
-import BerryCardVue from "./components/BerryCardVue.vue";
 import DisplayPokemonCardsVue from "./components/DisplayPokemonCardsVue.vue";
+import DisplayBerryCardsVue from "./components/DisplayBerryCardsVue.vue";
 </script>
 
 <style scoped>
